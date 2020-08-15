@@ -1,0 +1,11 @@
+Su compra fue:
+-------------------------------------------------------
+Nombre	Cantidad		Precio	monto a pagar
+-------------------------------------------------------
+Manzana     2       	25.96	51.92
+Leche       3       	49.99	149.97
+Limon       23      	11.99	275.77
+-------------------------------------------------------
+	El total a pagar es: 477.66
+El producto mas costoso fue: Leche que cuesta 49.99
+El producto mas economico fue: Limon que cuesta 11.99
