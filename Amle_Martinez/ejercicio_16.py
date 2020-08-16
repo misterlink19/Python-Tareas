@@ -12,8 +12,9 @@ economico = float()
 total = 0
 parar = False
 
-# Se abre el archivo en modo r, para manejar su lectura
-with open("Lista_de_compras.txt","r") as archivo:
+# Se abre el archivo en modo a, para manejar su lectura
+#Y si no existe se crea uno nuevo
+with open("Lista_de_compras.txt","a+") as archivo:
     if archivo.read(1):
         contador = 0
         # Recorremos las lineas del archivo para obtener las informaciones de los productos
@@ -61,8 +62,8 @@ with open("Lista_de_compras.txt","r") as archivo:
             else:
                 contador += 1
     else:
-        economico = 99999999.99
-        costoso  = -99999999.99
+        economico = 0.0
+        costoso  = 0.0
         
 def busca_producto(nombre_producto):
     try:
@@ -215,19 +216,24 @@ while  not parar:
     else:
         print("Error, esa opcion no existe\n\n")
 
-guarda_cambios()
+print(len(listado_de_compras))
 
-print("\nSu compra fue:")
-print("-------------------------------------------------------")
-print("Nombre","Cantidad","Precio","monto a pagar", sep="\t")
-print("-------------------------------------------------------")
+if len(listado_de_compras) <= 0:
+    print("No se creó la lista de compras con articulos")
+else:
+    guarda_cambios()
 
-for compra in listado_de_compras:   
-    print ('{:<12s}{:<8d}\t{:<.2f}\t{:<.2f}'.format(compra["nombre"], compra["cantidad"] ,compra["precio"],float(compra["cantidad"]*compra["precio"])))
+    print("\nSu compra fue:")
+    print("-------------------------------------------------------")
+    print("Nombre","Cantidad","Precio","monto a pagar", sep="\t")
+    print("-------------------------------------------------------")
 
-print("-------------------------------------------------------")
-print(f"\tEl total a pagar es: {total:.2f}")
+    for compra in listado_de_compras:   
+        print ('{:<12s}{:<8d}\t{:<.2f}\t{:<.2f}'.format(compra["nombre"], compra["cantidad"] ,compra["precio"],float(compra["cantidad"]*compra["precio"])))
 
-print(f"El producto mas costoso fue: {nombre_costoso} que cuesta {costoso}")
-print(f"El producto mas economico fue: {nombre_economico} que cuesta {economico}\n")
-print("Lista guardada en un archivo txt, llamado 'Lista_de_compras' \n")
+    print("-------------------------------------------------------")
+    print(f"\tEl total a pagar es: {total:.2f}")
+
+    print(f"El producto mas costoso fue: {nombre_costoso} que cuesta {costoso}")
+    print(f"El producto mas economico fue: {nombre_economico} que cuesta {economico}\n")
+    print("Lista guardada en un archivo txt, llamado 'Lista_de_compras' \n")
