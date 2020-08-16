@@ -60,6 +60,9 @@ with open("Lista_de_compras.txt","r") as archivo:
                 contador += 1
             else:
                 contador += 1
+    else:
+        economico = 99999999.99
+        costoso  = -99999999.99
         
 def busca_producto(nombre_producto):
     try:
