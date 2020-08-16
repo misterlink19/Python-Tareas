@@ -1,4 +1,4 @@
-#Programa de lista de compras de supermercado
+# Programa de lista de compras de supermercado
 
 compra = dict()
 listado_de_compras = list()
@@ -12,12 +12,11 @@ economico = float()
 total = 0
 parar = False
 
-#Se abre el archivo en modo r, para manejar su lectura
+# Se abre el archivo en modo r, para manejar su lectura
 with open("Lista_de_compras.txt","r") as archivo:
     if archivo.read(1):
         contador = 0
-        #recorremos las lineas del archivo para obtener las informaciones
-        #de los productos
+        # Recorremos las lineas del archivo para obtener las informaciones de los productos
         for lineas in archivo:
             
             if contador == 4:
@@ -28,9 +27,9 @@ with open("Lista_de_compras.txt","r") as archivo:
                     continue
                 else:
                     c = 0
-                    #Se usa un for para pasar por cade elemento de la lista,
-                    #porque python lanza el error de range out index
-                    #si no se hace de esta manera, antes lo intentaba a usar key:cadena[indice] y no dejaba
+                    # Se usa un for para pasar por cade elemento de la lista,
+                    # porque python lanza el error de range out index si no se hace de esta manera. 
+                    # antes lo intentaba a usar key:cadena[indice] y no dejaba.
                     for l in cadena:
                         if c == 0:
                             compra = {"nombre": l}
@@ -42,8 +41,8 @@ with open("Lista_de_compras.txt","r") as archivo:
                             compra.update({"precio": float(l)})
                             break  
                     listado_de_compras.append(compra)    
-            #Estos 2 elif, son para obtener los productos costosos
-            #y economicos de manera mas sencilla
+            # Estos 2 elif, son para obtener los productos costosos
+            # y economicos de manera mas sencilla
             elif contador == 6:
                 cadena = lineas[29:]
                 cadena = cadena.split()
@@ -83,7 +82,7 @@ def agrega_producto(producto):
 
         if not any(articulo["nombre"] == producto["nombre"] for articulo in listado_de_compras):
             
-            #Cambiando los tipos de datos de cantidad y precio
+            # Cambiando los tipos de datos de cantidad y precio
             producto["cantidad"] = int(producto["cantidad"])
             producto["precio"] = float(producto["precio"])
 
@@ -161,8 +160,8 @@ def guarda_cambios():
     archivo.write(f"El producto mas costoso fue: {nombre_costoso} que cuesta {costoso}\n")
     archivo.write(f"El producto mas economico fue: {nombre_economico} que cuesta {economico}\n")
 
-    #print("Lista guardada en un archivo txt, llamado 'Lista_de_compras' \n")
-
+    # Mensaje pensado para que salga cuando sea utilizado fuera en otro programa.
+    # print("Lista guardada en un archivo txt, llamado 'Lista_de_compras' \n")
     archivo.close()
 
 while  not parar:
@@ -177,7 +176,7 @@ while  not parar:
     opcion = input("Eliga una opcion: ")
     
     if opcion == "1":
-        #Obtengo los valores de la compra
+        # Obtengo los valores de la compra
         nombre = (input("\nEscriba su compra: ").lower().title())
         cantidad = int(input("Escriba su cantida: "))
         precio = float((input("Escriba su precio: ")))
