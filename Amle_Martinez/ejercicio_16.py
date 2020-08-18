@@ -4,66 +4,61 @@ compra = dict()
 listado_de_compras = list()
 
 nombre_costoso = str()
-costoso = float()
+costoso = 0.0
 
 nombre_economico = str()
-economico = float()
+economico = 0.0
 
 total = 0
 parar = False
 
 # Se abre el archivo en modo a, para manejar su lectura
-#Y si no existe se crea uno nuevo
-with open("Lista_de_compras.txt","a+") as archivo:
-    if archivo.read(1):
-        contador = 0
-        # Recorremos las lineas del archivo para obtener las informaciones de los productos
-        for lineas in archivo:
+with open("Lista_de_compras.txt","r") as archivo:
+    contador = 0
+    # Recorremos las lineas del archivo para obtener las informaciones de los productos
+    for lineas in archivo:
+        
+        if contador == 4:
+            cadena = lineas.split()    
             
-            if contador == 4:
-                cadena = lineas.split()    
-                
-                if "-------------------------------------------------------" in cadena:
-                    contador +=1
-                    continue
-                else:
-                    c = 0
-                    # Se usa un for para pasar por cade elemento de la lista,
-                    # porque python lanza el error de range out index si no se hace de esta manera. 
-                    # antes lo intentaba a usar key:cadena[indice] y no dejaba.
-                    for l in cadena:
-                        if c == 0:
-                            compra = {"nombre": l}
-                            c +=1
-                        elif c == 1:
-                            compra.update({"cantidad" : int(l)})
-                            c +=1
-                        elif c == 2:
-                            compra.update({"precio": float(l)})
-                            break  
-                    listado_de_compras.append(compra)    
-            # Estos 2 elif, son para obtener los productos costosos
-            # y economicos de manera mas sencilla
-            elif contador == 6:
-                cadena = lineas[29:]
-                cadena = cadena.split()
-                
-                nombre_costoso = cadena[0]
-                costoso = float(cadena[-1])
-                contador += 1
-            
-            elif contador == 7:
-                cadena = lineas[31:]
-                cadena = cadena.split()
-                
-                nombre_economico = cadena[0]
-                economico = float(cadena[-1])
-                contador += 1
+            if "-------------------------------------------------------" in cadena:
+                contador +=1
+                continue
             else:
-                contador += 1
-    else:
-        economico = 0.0
-        costoso  = 0.0
+                c = 0
+                # Se usa un for para pasar por cade elemento de la lista,
+                # porque python lanza el error de range out index si no se hace de esta manera. 
+                # antes lo intentaba a usar key:cadena[indice] y no dejaba.
+                for l in cadena:
+                    if c == 0:
+                        compra = {"nombre": l}
+                        c +=1
+                    elif c == 1:
+                        compra.update({"cantidad" : int(l)})
+                        c +=1
+                    elif c == 2:
+                        compra.update({"precio": float(l)})
+                        break  
+                listado_de_compras.append(compra)    
+        # Estos 2 elif, son para obtener los productos costosos
+        # y economicos de manera mas sencilla
+        elif contador == 6:
+            cadena = lineas[29:]
+            cadena = cadena.split()
+            
+            nombre_costoso = cadena[0]
+            costoso = float(cadena[-1])
+            contador += 1
+        
+        elif contador == 7:
+            cadena = lineas[31:]
+            cadena = cadena.split()
+            
+            nombre_economico = cadena[0]
+            economico = float(cadena[-1])
+            contador += 1
+        else:
+            contador += 1
         
 def busca_producto(nombre_producto):
     try:
@@ -215,8 +210,6 @@ while  not parar:
     
     else:
         print("Error, esa opcion no existe\n\n")
-
-print(len(listado_de_compras))
 
 if len(listado_de_compras) <= 0:
     print("No se creó la lista de compras con articulos")
