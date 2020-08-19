@@ -1,4 +1,4 @@
-
+# Excelente, eres (hasta el momento) el unico que entendio como realizar este ejercicio.
 def cambiar_caso(palabra):
     lista_palabra = list(palabra)
 
@@ -10,4 +10,4 @@ def cambiar_caso(palabra):
     
     return "".join(lista_palabra)
 
-print(cambiar_caso("hola MUNdo"))
+print(cambiar_caso("adIos mUndO"))

@@ -10,7 +10,7 @@ while "parar" not in compras:
 compras.pop()
 print(f"Se agregaron: {len(compras)} elementos")
 
-conjunto = set(compras)
+conjunto = set(compras) 
 print(f"Hubieron {len(conjunto)} elementos unicos")
 
 print("Su compra fue:")

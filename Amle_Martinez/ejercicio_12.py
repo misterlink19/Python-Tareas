@@ -28,13 +28,16 @@ while  not parar:
         print("Intente de nuevo....")
 
 print("\nSu compra fue:")
-print("-------------------------------------------------------")
+# Podrias utilizar algo como 
+guiones = "-" * 50
+# Es más consistente 
+print(guiones)
 print("Nombre","Cantidad","Precio","monto a pagar", sep="\t")
-print("-------------------------------------------------------")
+print(guiones)
 
 for compra in listado_de_compras:
     total += float(compra["cantidad"]*compra["precio"])
     print ('{:<12s}{:<8d}\t{:<.2f}\t{:<.2f}'.format(compra["nombre"], compra["cantidad"] ,compra["precio"],float(compra["cantidad"]*compra["precio"])))
 
-print("-------------------------------------------------------")
+print(guiones)
 print(f"\tEl total a pagar es: {total:.2f}")

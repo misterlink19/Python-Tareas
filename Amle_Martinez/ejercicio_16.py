@@ -13,14 +13,16 @@ total = 0
 parar = False
 
 # Se abre el archivo en modo a, para manejar su lectura
-with open("Lista_de_compras.txt","r") as archivo:
+with open("Lista_de_compras.txt","r") as archivo: 
+    # En este caso no debiste usar with, al menos no de esta forma, 
+    # ya que estas abriendo otro scope sin necesidad
     contador = 0
     # Recorremos las lineas del archivo para obtener las informaciones de los productos
     for lineas in archivo:
         
         if contador == 4:
             cadena = lineas.split()    
-            
+            # El formato que elegiste para guardar la lista de compras no era el adecuado
             if "-------------------------------------------------------" in cadena:
                 contador +=1
                 continue
@@ -29,6 +31,8 @@ with open("Lista_de_compras.txt","r") as archivo:
                 # Se usa un for para pasar por cade elemento de la lista,
                 # porque python lanza el error de range out index si no se hace de esta manera. 
                 # antes lo intentaba a usar key:cadena[indice] y no dejaba.
+
+                # Hiciste un force pero epic :D
                 for l in cadena:
                     if c == 0:
                         compra = {"nombre": l}
@@ -42,6 +46,9 @@ with open("Lista_de_compras.txt","r") as archivo:
                 listado_de_compras.append(compra)    
         # Estos 2 elif, son para obtener los productos costosos
         # y economicos de manera mas sencilla
+
+        # Te hubieses ahorrado mucho exfuerzo utilizando otra estructura de datos. 
+        # Recuerda que json, csv y hasta xml son texto plano a nivel de ficheros
         elif contador == 6:
             cadena = lineas[29:]
             cadena = cadena.split()
@@ -62,7 +69,7 @@ with open("Lista_de_compras.txt","r") as archivo:
         
 def busca_producto(nombre_producto):
     try:
-        global listado_de_compras
+        global listado_de_compras # Global no era necesario, pero al usar un bloque with comprendo.
         for producto in listado_de_compras:
            if producto["nombre"] == nombre_producto:
                print("Producto encontrado!")
