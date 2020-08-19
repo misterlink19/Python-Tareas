@@ -33,6 +33,7 @@ print("\nSu compra fue:")
 print("Nombre","Cantidad","Precio","monto a pagar", sep="\t")
 
 total = 0
+# Debiste agregar el monto a pagar a los datos guardados, luego sumar esos datos.
 for compra in listado_de_compras:
     total += float(compra["cantidad"]*compra["precio"])
     print ('{:<12s}{:<8d}\t{:<.2f}\t{:<.2f}'.format(compra["nombre"], compra["cantidad"] ,compra["precio"],float(compra["cantidad"]*compra["precio"])))
